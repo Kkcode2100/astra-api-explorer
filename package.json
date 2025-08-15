@@ -1,0 +1,16 @@
+{
+  "name": "astra",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Astra - API Explorer & Integration Builder mono-repo",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.7.0",
+  "scripts": {
+    "dev": "echo 'Use docker compose up for full stack; or run apps separately'",
+    "lint": "pnpm -C apps/frontend lint || true && ruff apps/backend || true",
+    "build": "pnpm -C apps/frontend build",
+    "test": "echo 'Tests are run per app/package'"
+  }
+}
