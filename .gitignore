@@ -1,0 +1,34 @@
+# Node
+node_modules/
+.pnpm-store/
+.dist/
+dist/
+.next/
+out/
+
+# Frontend
+apps/frontend/.next/
+apps/frontend/out/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Tooling
+.DS_Store
+.env
+.env.*
+.cache/
+.ruff_cache/
+.mypy_cache/
+
+# Editors
+.idea/
+.vscode/
+
+# Artifacts
+artifacts/
+coverage/
