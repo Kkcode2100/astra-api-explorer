@@ -16,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -37,7 +36,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
       - name: Frontend lint
         run: |
           pnpm -C apps/frontend install --frozen-lockfile || true
@@ -60,7 +58,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
       - name: Frontend build
         run: |
           pnpm -C apps/frontend install --frozen-lockfile || true
