@@ -2,10 +2,13 @@
 FROM node:20-alpine AS base
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* ./
-RUN corepack enable && corepack prepare pnpm@9.7.0 --activate && pnpm install --frozen-lockfile || true
+RUN corepack enable && corepack prepare pnpm@9.7.0 --activate
+
+COPY package.json ./
+RUN pnpm install
 
 COPY . .
-RUN pnpm build || true
+RUN pnpm build
+
 EXPOSE 3000
 CMD ["pnpm", "start"]

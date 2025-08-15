@@ -16,6 +16,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Ensure data dir for SQLite
+RUN mkdir -p /app/data
+
 EXPOSE 8000
 
 ENV HOST=0.0.0.0 PORT=8000

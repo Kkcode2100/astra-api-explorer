@@ -8,6 +8,7 @@ from starlette.responses import Response
 from app.db import init_db
 from app.config import settings
 from app.routers import health, specs, requests as reqs, morpheus, codegen
+from app.routers import secrets as secrets_router
 
 
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
@@ -46,3 +47,4 @@ app.include_router(specs.router, prefix="/specs", tags=["specs"])
 app.include_router(reqs.router, prefix="/requests", tags=["requests"])
 app.include_router(morpheus.router, prefix="/morpheus", tags=["morpheus"])
 app.include_router(codegen.router, prefix="/codegen", tags=["codegen"])
+app.include_router(secrets_router.router, prefix="/secrets", tags=["secrets"])

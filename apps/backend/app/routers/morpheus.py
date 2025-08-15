@@ -14,9 +14,11 @@ async def discover_service_plans(page: int = Query(0, ge=0), max: int = Query(10
 	client = MorpheusClient()
 	try:
 		plans = await client.list_service_plans(page=page, max=max)
+	except Exception as exc:
+		raise HTTPException(status_code=502, detail=f"Morpheus error: {exc}")
 	finally:
 		await client.close()
-	return {"items": plans}
+	return {"items": plans, "page": page, "max": max}
 
 
 @router.post("/service-plans/diff")
@@ -24,6 +26,8 @@ async def diff_service_plans(desired: Dict[str, List[Dict[str, Any]]]) -> Dict[s
 	client = MorpheusClient()
 	try:
 		plan = await client.diff_service_plans(desired.get("items", []))
+	except Exception as exc:
+		raise HTTPException(status_code=400, detail=f"Diff failed: {exc}")
 	finally:
 		await client.close()
 	return {"plan": plan}
@@ -36,6 +40,8 @@ async def apply_service_plans(payload: Dict[str, Any]) -> Dict[str, Any]:
 	client = MorpheusClient()
 	try:
 		result = await client.apply_service_plans(plan, dry_run=dry_run)
+	except Exception as exc:
+		raise HTTPException(status_code=400, detail=f"Apply failed: {exc}")
 	finally:
 		await client.close()
 	return result
